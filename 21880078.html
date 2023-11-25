@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="21880078.css">
+    <title>21880078</title>
+</head>
+
+<body>
+    <header class="container">  
+        <div class="container" >
+            <div class="banner-text">
+                <h1 class="banner-text h1">21880078</h1>
+            </div>
+            <div class="topnav main-menu">
+                <a href="21880078.html#cau1">Câu 1</a>
+                <a href="21880078.html#cau2">Câu 2</a>
+                <a href="21880078.html#cau3">Câu 3</a>
+            </div>            
+        </div>                  
+    </header>
+
+    <div class="container" id="cau1">
+        <div class="column">
+          <h2>Column 1</h2>
+          <img src='../images/cau1-img.png'>  
+        </div>
+        <div class="column" style="color: #e38773;">
+          <h2>Column 2</h2>
+          <h3>MSSV: 21880078</h3>
+          <h3>Nguyễn Văn Minh</h3>
+        </div>
+    </div>
+
+    <footer class="text-copyright">
+        <p class="footer-text text-center mb-10" style="font-size: 12pt;">Copyright &copy; 2023 by Nguyen Van Minh - 21880078</p>
+    </footer>
+
+    <!-- HandlebarJS--> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js" 
+    integrity="sha512-E1dSFxg+wsfJ4HKjutk/WaCzK7S2wv1POn1RRPGh8ZK+ag9l244Vqxji3r6wgz9YBf6+vhQEYJZpSjqWFPg9gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="vendor/data.js"></script>
+
+    <div class="container" id="cau2">
+        <script src="vendor/data.js"></script>
+        <script>
+            let jsonData = {
+                data: getAll()
+            };
+    
+        jsonData.data.forEach(item => {
+        document.querySelector('.container').innerHTML += `
+            <div class="item">
+            <img src="${item.imagePath}" alt="${item.title}">
+            <h3>${item.title}</h3>
+            <p>${item.summary}</p>
+            </div>
+        `;
+        });
+        </script>
+    </div>
+
+    <div class="container">
+        <div class="row">
+          {{#each jsonData.data}}
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 item">
+            <img src="{{this.imagePath}}" alt="{{this.title}}">
+            <h3>{{this.title}}</h3>
+            <p>{{this.summary}}</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal{{@index}}">Read more</button>
+          </div>
+          
+          <div id="myModal{{@index}}" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">{{this.title}}</h5>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <img src="{{this.imagePath}}" alt="{{this.title}}">
+                  <p>{{this.description}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>    
+
+    <div class="cau3" id="cau3">
+        <div class="content">
+            <div class="image"></div>
+            <form id="myForm">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <div>
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>        
+    </div>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+          event.preventDefault();
+          if (this.checkValidity()) {
+            alert("Please come back later!");
+          }
+        });
+    </script>
+    
+</body>
+</html>
